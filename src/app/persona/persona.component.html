@@ -23,7 +23,6 @@
   <input id="fecha" name="fecha" type="date"
   [(ngModel)]="fechaNacimiento" required>
 
-
   @if (indiceEditar === -1) {
    <button type="submit">Guardar</button>
   } @else {
@@ -42,12 +41,11 @@
      <th>DNI</th>
      <th>Nombre</th>
      <th>Fecha de nacimiento</th>
-     <th>Acciones</th> 
+     <th>Acciones</th>
     </tr>
    </thead>
    <tbody>
-
-    @for (persona of personas; track persona.id; let i = $index) {[cite: 5]
+    @for (persona of personas; track persona.id; let i = $index) {
      <tr>
       <td>{{ persona.id }}</td>
       <td>{{ persona.dni }}</td>
@@ -56,6 +54,9 @@
       <td>
        <button type="button" (click)="editar(i)">
         Editar
+       </button>
+       <button type="button" (click)="eliminar(i)">
+        Eliminar
        </button>
       </td>
      </tr>

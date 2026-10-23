@@ -18,7 +18,6 @@ interface Persona {
 export class PersonaComponent {
  personas: Persona[] = [];
 
-
  dni = '';
  nombre = '';
  fechaNacimiento = '';
@@ -40,7 +39,6 @@ export class PersonaComponent {
   this.router.navigate(['/login']);
  }
 
-
  editar(indice: number) {
   this.indiceEditar = indice;
   this.dni = this.personas[indice].dni;
@@ -55,7 +53,7 @@ export class PersonaComponent {
   }
 
   if (this.indiceEditar === -1) {
-   
+
    let nuevoId = 1;
    for (const persona of this.personas) {
     if (persona.id >= nuevoId) {
@@ -72,7 +70,6 @@ export class PersonaComponent {
 
    this.personas.push(nuevaPersona);
   } else {
-   
    this.personas[this.indiceEditar].dni = this.dni.trim();
    this.personas[this.indiceEditar].nombre = this.nombre.trim();
    this.personas[this.indiceEditar].fechaNacimiento = this.fechaNacimiento;
@@ -87,6 +84,14 @@ export class PersonaComponent {
   this.nombre = '';
   this.fechaNacimiento = '';
   this.indiceEditar = -1;
+ }
+
+ eliminar(indice: number) {
+  if (confirm('¿Eliminar esta persona?')) {
+   this.personas.splice(indice, 1);
+   this.guardarEnLocalStorage();
+   this.limpiar();
+  }
  }
 
  guardarEnLocalStorage() {
